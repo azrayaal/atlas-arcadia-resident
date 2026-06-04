@@ -82,7 +82,7 @@ export function AccessPage() {
             className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all ${
               activeMethod === method.id
                 ? "border-amber-300 bg-amber-50/50 shadow-sm"
-                : "bg-white border-zinc-100"
+                : "bg-zinc-50 border-zinc-200"
             }`}
           >
             <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${method.color}`}>
@@ -132,7 +132,7 @@ export function AccessPage() {
         {activeMethod === "qr" && (
           <motion.div
             initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
-            className="mx-4 mt-4 p-5 bg-white rounded-2xl border border-zinc-100 overflow-hidden"
+            className="mx-4 mt-4 p-5 bg-zinc-50 rounded-2xl border border-zinc-200 overflow-hidden"
           >
             <p className="text-center text-xs text-zinc-500 mb-3">QR Code Akses Social Hub</p>
             <div className="w-40 h-40 mx-auto bg-zinc-900 rounded-xl p-3">
@@ -143,7 +143,7 @@ export function AccessPage() {
               </div>
             </div>
             <p className="text-center text-xs text-zinc-400 mt-3">QR valid untuk 5 menit</p>
-            <div className="mt-2 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+            <div className="mt-2 h-1.5 bg-zinc-200 rounded-full overflow-hidden">
               <motion.div initial={{ width: "100%" }} animate={{ width: "0%" }} transition={{ duration: 300 }}
                 className="h-full bg-amber-500 rounded-full" />
             </div>
@@ -157,7 +157,7 @@ export function AccessPage() {
         <div className="space-y-2">
           {accessLogs.filter(l => l.resident === "Rizky Maulana" || l.resident === "Siti Aminah").map((log, i) => (
             <motion.div key={log.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.06 }}
-              className="flex items-center gap-3 p-3 bg-white rounded-xl border border-zinc-100">
+              className="flex items-center gap-3 p-3 bg-zinc-50 rounded-xl border border-zinc-200">
               <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${log.status === "granted" ? "bg-emerald-50" : "bg-red-50"}`}>
                 {log.status === "granted"
                   ? <CheckCircle2 size={14} className="text-emerald-500" />

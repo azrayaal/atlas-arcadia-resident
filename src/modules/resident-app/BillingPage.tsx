@@ -58,18 +58,18 @@ export function BillingPage() {
       {/* Bill detail */}
       <div className="px-4 mt-4">
         <h3 className="text-xs font-semibold text-zinc-700 mb-2.5">Rincian Tagihan</h3>
-        <div className="bg-white rounded-2xl border border-zinc-100 overflow-hidden">
+        <div className="bg-zinc-50 rounded-2xl border border-zinc-200 overflow-hidden">
           {currentBill.items.map((item, i) => (
             <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
-              className="flex items-center gap-3 px-4 py-3.5 border-b border-zinc-50 last:border-0">
-              <div className="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center shrink-0">
+              className="flex items-center gap-3 px-4 py-3.5 border-b border-zinc-100 last:border-0">
+              <div className="w-8 h-8 rounded-lg bg-zinc-200 flex items-center justify-center shrink-0">
                 {getIcon(item.label)}
               </div>
               <div className="flex-1 text-xs font-medium text-zinc-700">{item.label}</div>
               <div className="text-xs font-semibold text-zinc-900">{formatCurrency(item.amount)}</div>
             </motion.div>
           ))}
-          <div className="flex items-center justify-between px-4 py-3.5 bg-zinc-50">
+          <div className="flex items-center justify-between px-4 py-3.5 bg-zinc-100">
             <span className="text-sm font-bold text-zinc-900">Total</span>
             <span className="text-sm font-bold text-zinc-900">{formatCurrency(currentBill.total)}</span>
           </div>
@@ -87,7 +87,7 @@ export function BillingPage() {
               { label: "Kartu Kredit/Debit", sub: "Visa, Mastercard, JCB", icon: "💳" },
             ].map((m, i) => (
               <motion.button key={m.label} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + i * 0.06 }}
-                className="w-full flex items-center gap-3 p-3.5 bg-white border border-zinc-100 rounded-xl hover:border-zinc-300 transition-colors text-left">
+                className="w-full flex items-center gap-3 p-3.5 bg-zinc-50 border border-zinc-200 rounded-xl hover:border-zinc-300 transition-colors text-left">
                 <div className="text-xl w-9 h-9 flex items-center justify-center shrink-0">{m.icon}</div>
                 <div className="flex-1">
                   <div className="text-xs font-semibold text-zinc-900">{m.label}</div>
@@ -106,7 +106,7 @@ export function BillingPage() {
         <div className="space-y-2">
           {residentBills.map((bill, i) => (
             <motion.div key={bill.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.06 }}
-              className="flex items-center gap-3 p-3.5 bg-white rounded-2xl border border-zinc-100">
+              className="flex items-center gap-3 p-3.5 bg-zinc-50 rounded-2xl border border-zinc-200">
               <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${bill.status === "paid" ? "bg-emerald-50" : "bg-amber-50"}`}>
                 {bill.status === "paid"
                   ? <CheckCircle2 size={16} className="text-emerald-500" />

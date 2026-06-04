@@ -8,8 +8,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants = {
   default: "bg-zinc-900 text-white hover:bg-zinc-800",
-  outline: "border border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-50",
-  ghost: "bg-transparent text-zinc-600 hover:bg-zinc-100",
+  outline: "border border-zinc-200 bg-zinc-50 text-zinc-900 hover:bg-zinc-100",
+  ghost: "bg-transparent text-zinc-600 hover:bg-zinc-200",
   gold: "gradient-gold text-white hover:opacity-90 shadow-gold",
   danger: "bg-red-600 text-white hover:bg-red-700",
 }

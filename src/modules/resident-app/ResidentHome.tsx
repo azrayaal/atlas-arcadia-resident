@@ -43,7 +43,7 @@ export function ResidentHome() {
         <div className="grid grid-cols-4 gap-2">
           {quickActions.map((action, i) => (
             <motion.div key={action.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}>
-              <Link to={action.path} className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-white border border-zinc-100 hover:shadow-card-hover transition-all active:scale-95">
+              <Link to={action.path} className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-zinc-50 border border-zinc-200 hover:shadow-card-hover transition-all active:scale-95">
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${action.color}`}>
                   <action.icon size={18} />
                 </div>
@@ -60,8 +60,8 @@ export function ResidentHome() {
         <div className="grid grid-cols-2 gap-2">
           {smartStatus.map((s, i) => (
             <motion.div key={s.label} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.06 }}
-              className="flex items-center gap-3 p-3 bg-white rounded-2xl border border-zinc-100">
-              <div className="w-8 h-8 rounded-xl bg-zinc-100 flex items-center justify-center shrink-0">
+              className="flex items-center gap-3 p-3 bg-zinc-50 rounded-2xl border border-zinc-200">
+              <div className="w-8 h-8 rounded-xl bg-zinc-200 flex items-center justify-center shrink-0">
                 <s.icon size={15} className="text-zinc-500" />
               </div>
               <div>
@@ -113,7 +113,7 @@ export function ResidentHome() {
         <div className="space-y-2">
           {notifications.slice(0, 3).map((notif, i) => (
             <motion.div key={notif.id} initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 + i * 0.05 }}
-              className={`flex items-start gap-3 p-3 rounded-2xl border transition-colors ${notif.read ? "bg-white border-zinc-100" : "bg-amber-50/50 border-amber-100"}`}>
+              className={`flex items-start gap-3 p-3 rounded-2xl border transition-colors ${notif.read ? "bg-zinc-50 border-zinc-200" : "bg-amber-50/50 border-amber-100"}`}>
               <div className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
                 notif.type === "success" ? "bg-emerald-100" : notif.type === "warning" ? "bg-amber-100" : "bg-blue-100"
               }`}>

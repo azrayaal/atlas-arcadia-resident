@@ -13,7 +13,7 @@ const tabs = [
 
 export function ResidentLayout() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-100">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-zinc-300 via-zinc-200 to-zinc-300">
       {/* Mobile phone frame */}
       <div className="relative w-[390px] h-[844px] bg-zinc-900 rounded-[50px] shadow-2xl overflow-hidden border-4 border-zinc-800">
         {/* Status bar */}
@@ -38,13 +38,13 @@ export function ResidentLayout() {
         </div>
 
         {/* App content */}
-        <div className="absolute inset-0 overflow-hidden flex flex-col bg-zinc-50">
+        <div className="absolute inset-0 overflow-hidden flex flex-col bg-zinc-100">
           {/* Header */}
-          <div className="pt-12 px-5 pb-3 bg-white border-b border-zinc-100 flex items-center justify-between shrink-0">
+          <div className="pt-12 px-5 pb-3 bg-stone-100 border-b border-zinc-200 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
               <img src="/atlas_arcadia.png" alt="Atlas Arcadia" className="h-6 w-auto object-contain" />
             </div>
-            <button className="relative p-1.5 rounded-full bg-zinc-100">
+            <button className="relative p-1.5 rounded-full bg-zinc-200">
               <Bell size={16} className="text-zinc-600" />
               <span className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full bg-amber-500 border border-white" />
             </button>
@@ -63,7 +63,7 @@ export function ResidentLayout() {
           </div>
 
           {/* Bottom nav */}
-          <div className="shrink-0 bg-white border-t border-zinc-100 px-2 pt-2 pb-6">
+          <div className="shrink-0 bg-stone-100 border-t border-zinc-200 px-2 pt-2 pb-6">
             <div className="flex items-center justify-around">
               {tabs.map((tab) => (
                 <NavLink

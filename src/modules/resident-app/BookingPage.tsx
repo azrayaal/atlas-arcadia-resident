@@ -35,7 +35,7 @@ export function BookingPage() {
       {booked && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           className="fixed inset-0 bg-zinc-900/80 z-50 flex items-center justify-center p-8">
-          <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="bg-white rounded-3xl p-8 text-center">
+          <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="bg-zinc-50 rounded-3xl p-8 text-center">
             <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
               <CheckCircle2 size={32} className="text-emerald-500" />
             </div>
@@ -56,7 +56,7 @@ export function BookingPage() {
           <motion.button key={fac.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
             onClick={() => setSelectedFacility(selectedFacility === fac.id ? null : fac.id)}
             className={`w-full flex items-center gap-3 p-4 rounded-2xl border transition-all text-left ${
-              selectedFacility === fac.id ? "border-amber-300 shadow-sm bg-amber-50/30" : "bg-white border-zinc-100"
+              selectedFacility === fac.id ? "border-amber-300 shadow-sm bg-amber-50/30" : "bg-zinc-50 border-zinc-200"
             }`}
           >
             <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${fac.color}`}>
@@ -66,7 +66,7 @@ export function BookingPage() {
               <div className="text-sm font-semibold text-zinc-900">{fac.label}</div>
               <div className="flex items-center gap-2 mt-1">
                 <div className="flex items-center gap-1">
-                  <div className="w-16 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                  <div className="w-16 h-1.5 bg-zinc-200 rounded-full overflow-hidden">
                     <div className="h-full bg-emerald-400 rounded-full" style={{ width: `${(fac.available / fac.capacity) * 100}%` }} />
                   </div>
                 </div>
@@ -92,7 +92,7 @@ export function BookingPage() {
               {days.map((d) => (
                 <button key={d.date} onClick={() => setSelectedDate(d.date)}
                   className={`shrink-0 flex flex-col items-center px-3.5 py-2.5 rounded-xl border transition-all ${
-                    selectedDate === d.date ? "bg-zinc-900 border-zinc-900 text-white" : "bg-white border-zinc-100 text-zinc-600"
+                    selectedDate === d.date ? "bg-zinc-900 border-zinc-900 text-white" : "bg-zinc-50 border-zinc-200 text-zinc-600"
                   }`}>
                   <span className="text-[10px] font-medium">{d.day}</span>
                   <span className="text-sm font-bold mt-0.5">{d.date}</span>
@@ -113,9 +113,9 @@ export function BookingPage() {
                   return (
                     <button key={slot} disabled={taken} onClick={() => setSelectedSlot(slot)}
                       className={`py-2 rounded-xl text-xs font-semibold border transition-all ${
-                        taken ? "bg-zinc-50 text-zinc-300 border-zinc-100 cursor-not-allowed" :
+                        taken ? "bg-zinc-100 text-zinc-300 border-zinc-200 cursor-not-allowed" :
                         selected ? "bg-zinc-900 border-zinc-900 text-white" :
-                        "bg-white border-zinc-100 text-zinc-700 hover:border-zinc-300"
+                        "bg-zinc-50 border-zinc-200 text-zinc-700 hover:border-zinc-300"
                       }`}>
                       {slot}
                     </button>
@@ -141,8 +141,8 @@ export function BookingPage() {
         <div className="space-y-2">
           {facilityBookings.slice(0, 3).map((bk, i) => (
             <motion.div key={bk.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.06 }}
-              className="flex items-center gap-3 p-3 bg-white rounded-xl border border-zinc-100">
-              <div className="w-9 h-9 rounded-xl bg-zinc-100 flex items-center justify-center shrink-0">
+              className="flex items-center gap-3 p-3 bg-zinc-50 rounded-xl border border-zinc-200">
+              <div className="w-9 h-9 rounded-xl bg-zinc-200 flex items-center justify-center shrink-0">
                 {bk.facility.includes("Gym") ? <Dumbbell size={16} className="text-zinc-600" />
                   : bk.facility.includes("Pool") ? <Waves size={16} className="text-blue-500" />
                   : <Users2 size={16} className="text-amber-500" />}
