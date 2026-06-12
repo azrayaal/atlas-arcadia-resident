@@ -14,7 +14,7 @@ const tabs = [
   { path: "/resident/billing", label: "Tagihan", icon: CreditCard },
 ]
 
-const notificationTriggers = [
+const notificationTriggers: { id: string; label: string; notification: Notification }[] = [
   {
     id: "trigger-bill-sim",
     label: "Simulasikan Tagihan",
