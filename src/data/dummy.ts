@@ -141,6 +141,13 @@ export const notifications: Notification[] = [
   { id: "n2", title: "Booking Gym Dikonfirmasi", message: "Booking Gym untuk besok pukul 07:00-08:00 telah dikonfirmasi.", time: "5 jam lalu", type: "success", read: false },
   { id: "n3", title: "Promo Social Hub Weekend", message: "Nikmati 2x poin untuk setiap penggunaan Social Hub akhir pekan ini!", time: "1 hari lalu", type: "info", read: true },
   { id: "n4", title: "Maintenance Kolam Renang", message: "Kolam renang akan dalam maintenance Sabtu, 6 Juni 2026 pukul 08:00-12:00.", time: "2 hari lalu", type: "warning", read: true },
+  { id: "n5", title: "Pengingat Pembayaran", message: "Jatuh tempo pembayaran tagihan akan datang dalam 3 hari.", time: "3 jam lalu", type: "warning", read: false },
+  { id: "n6", title: "Pembayaran Berhasil", message: "Pembayaran tagihan Juni Anda telah berhasil diproses.", time: "4 jam lalu", type: "success", read: false },
+  { id: "n7", title: "Gerbang Utama Terbuka", message: "Gerbang utama telah dibuka, silakan pastikan kendaraan keluar masuk aman.", time: "6 jam lalu", type: "info", read: true },
+  { id: "n8", title: "Akses Tamu Diterima", message: "Tamu Anda telah diberikan izin masuk di lobi utama.", time: "7 jam lalu", type: "success", read: true },
+  { id: "n9", title: "Paket Telah Tiba", message: "Paket Anda telah sampai di resepsionis dan siap diambil.", time: "8 jam lalu", type: "info", read: true },
+  { id: "n10", title: "Pengumuman Komunitas", message: "Acara community gathering akan diadakan malam ini di lounge.", time: "9 jam lalu", type: "info", read: true },
+  { id: "n11", title: "Pemberitahuan Keamanan", message: "Akses tidak dikenal terdeteksi di gerbang utama. Silakan periksa rekaman CCTV.", time: "10 jam lalu", type: "alert", read: false },
 ]
 
 export const smartEcosystemFeatures = [

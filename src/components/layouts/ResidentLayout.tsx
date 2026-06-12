@@ -1,7 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Key, CalendarDays, Gift, CreditCard, Bell, Home } from "lucide-react"
 import { cn } from "../../lib/utils"
+import { notifications } from "../../data/dummy"
+import type { Notification } from "../../types"
 
 const tabs = [
   { path: "/resident", label: "Home", icon: Home, end: true },
@@ -11,9 +14,137 @@ const tabs = [
   { path: "/resident/billing", label: "Tagihan", icon: CreditCard },
 ]
 
+const notificationTriggers = [
+  {
+    id: "trigger-bill-sim",
+    label: "Simulasikan Tagihan",
+    notification: {
+      id: "n-bill-sim",
+      title: "Tagihan Bulanan Tersedia",
+      message: "Tagihan bulan Juni 2026 Anda sebesar Rp 4.160.000 telah tersedia.",
+      time: "Baru saja",
+      type: "info",
+      read: false,
+    },
+  },
+  {
+    id: "trigger-payment-reminder",
+    label: "Pengingat Pembayaran",
+    notification: {
+      id: "n-payment-reminder",
+      title: "Pengingat Pembayaran",
+      message: "Jatuh tempo pembayaran tagihan akan datang dalam 3 hari.",
+      time: "Baru saja",
+      type: "warning",
+      read: false,
+    },
+  },
+  {
+    id: "trigger-payment-success",
+    label: "Pembayaran Berhasil",
+    notification: {
+      id: "n-payment-success",
+      title: "Pembayaran Berhasil",
+      message: "Pembayaran tagihan Juni Anda telah berhasil diproses.",
+      time: "Baru saja",
+      type: "success",
+      read: false,
+    },
+  },
+  {
+    id: "trigger-gate-open",
+    label: "Gerbang Terbuka",
+    notification: {
+      id: "n-gate-open",
+      title: "Gerbang Utama Terbuka",
+      message: "Gerbang utama telah dibuka, silakan pastikan kendaraan keluar masuk aman.",
+      time: "Baru saja",
+      type: "info",
+      read: false,
+    },
+  },
+  {
+    id: "trigger-visitor-access",
+    label: "Akses Tamu",
+    notification: {
+      id: "n-visitor-access",
+      title: "Akses Tamu Diterima",
+      message: "Tamu Anda telah diberikan izin masuk di lobi utama.",
+      time: "Baru saja",
+      type: "success",
+      read: false,
+    },
+  },
+  {
+    id: "trigger-package-arrival",
+    label: "Paket Tiba",
+    notification: {
+      id: "n-package-arrival",
+      title: "Paket Telah Tiba",
+      message: "Paket Anda telah sampai di resepsionis dan siap diambil.",
+      time: "Baru saja",
+      type: "info",
+      read: false,
+    },
+  },
+  {
+    id: "trigger-community-announcement",
+    label: "Pengumuman Komunitas",
+    notification: {
+      id: "n-community-announcement",
+      title: "Pengumuman Komunitas",
+      message: "Acara community gathering akan diadakan malam ini di lounge.",
+      time: "Baru saja",
+      type: "info",
+      read: false,
+    },
+  },
+  {
+    id: "trigger-security-alert",
+    label: "Notifikasi Keamanan",
+    notification: {
+      id: "n-security-alert",
+      title: "Pemberitahuan Keamanan",
+      message: "Akses tidak dikenal terdeteksi di gerbang utama. Silakan periksa rekaman CCTV.",
+      time: "Baru saja",
+      type: "alert",
+      read: false,
+    },
+  },
+]
+
 export function ResidentLayout() {
+  const [homeNotifications, setHomeNotifications] = useState<Notification[]>(notifications)
+
+  const triggerNotification = (notification: Notification) => {
+    setHomeNotifications(prev => [
+      { ...notification, id: `${notification.id}-${Date.now()}` },
+      ...prev,
+    ])
+  }
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-zinc-300 via-zinc-200 to-zinc-300">
+    <div className="flex flex-col items-center justify-center min-h-screen gap-4 bg-gradient-to-br from-zinc-300 via-zinc-200 to-zinc-300 px-4 py-6">
+      <div className="w-full max-w-[420px] rounded-3xl bg-white border border-zinc-200 p-4 shadow-lg">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Simulasi Notifikasi</p>
+            <p className="text-[11px] text-zinc-400 mt-1">Klik tombol untuk menambahkan notifikasi ke daftar notifikasi.</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {notificationTriggers.map(trigger => (
+            <button
+              key={trigger.id}
+              onClick={() => triggerNotification(trigger.notification)}
+              className="rounded-2xl border border-zinc-200 bg-zinc-100 px-3 py-2 text-[10px] font-semibold text-zinc-700 hover:bg-zinc-200 transition"
+            >
+              {trigger.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Mobile phone frame */}
       <div className="relative w-[390px] h-[844px] bg-zinc-900 rounded-[50px] shadow-2xl overflow-hidden border-4 border-zinc-800">
         {/* Status bar */}
@@ -58,7 +189,7 @@ export function ResidentLayout() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <Outlet />
+              <Outlet context={{ homeNotifications, triggerNotification }} />
             </motion.div>
           </div>
 
