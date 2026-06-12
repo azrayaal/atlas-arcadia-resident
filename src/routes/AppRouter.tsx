@@ -5,6 +5,8 @@ import { AccessPage } from "../modules/resident-app/AccessPage"
 import { BookingPage } from "../modules/resident-app/BookingPage"
 import { RewardsPage } from "../modules/resident-app/RewardsPage"
 import { BillingPage } from "../modules/resident-app/BillingPage"
+import { AllNotificationsPage } from "../modules/resident-app/AllNotificationsPage"
+import { NotificationDetailPage } from "../modules/resident-app/NotificationDetailPage"
 
 function RouteErrorPage() {
   const error = useRouteError()
@@ -55,6 +57,8 @@ const router = createBrowserRouter([
       { path: "booking", element: <BookingPage /> },
       { path: "rewards", element: <RewardsPage /> },
       { path: "billing", element: <BillingPage /> },
+      { path: "notifications", element: <AllNotificationsPage /> },
+      { path: "notifications/:id", element: <NotificationDetailPage /> },
     ],
   },
 ])

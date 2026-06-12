@@ -123,6 +123,10 @@ export function ResidentLayout() {
     ])
   }
 
+  const removeNotification = (id: string) => {
+    setHomeNotifications(prev => prev.filter(notif => notif.id !== id))
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-4 bg-gradient-to-br from-zinc-300 via-zinc-200 to-zinc-300 px-4 py-6">
       <div className="w-full max-w-[420px] rounded-3xl bg-white border border-zinc-200 p-4 shadow-lg">
@@ -189,7 +193,7 @@ export function ResidentLayout() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <Outlet context={{ homeNotifications, triggerNotification }} />
+              <Outlet context={{ homeNotifications, triggerNotification, removeNotification }} />
             </motion.div>
           </div>
 

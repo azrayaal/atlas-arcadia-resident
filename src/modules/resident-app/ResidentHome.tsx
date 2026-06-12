@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { Key, CalendarDays, Gift, CreditCard, Wifi, Thermometer, Lightbulb, Shield, ChevronRight, Bell } from "lucide-react"
+import { Key, CalendarDays, Gift, CreditCard, Wifi, Thermometer, Lightbulb, Shield, ChevronRight, Bell, Trash2 } from "lucide-react"
 import { Link, useOutletContext } from "react-router-dom"
 import type { Notification } from "../../types"
 
@@ -18,7 +18,7 @@ const smartStatus = [
 ]
 
 export function ResidentHome() {
-  const { homeNotifications } = useOutletContext<{ homeNotifications: Notification[] }>()
+  const { homeNotifications, removeNotification } = useOutletContext<{ homeNotifications: Notification[]; removeNotification: (id: string) => void }>()
 
   return (
     <div className="pb-4">
@@ -26,12 +26,14 @@ export function ResidentHome() {
       <div className="px-4 mt-4">
         <div className="flex items-center justify-between mb-2.5">
           <h3 className="text-xs font-semibold text-zinc-700">Notifikasi Terbaru</h3>
-          <span className="text-xs text-amber-600 font-medium">Semua</span>
+          <Link to="/resident/notifications" className="text-[10px] font-semibold text-amber-600 hover:text-amber-700 transition">
+            Lihat Semua
+          </Link>
         </div>
         <div className="space-y-2">
           {homeNotifications.slice(0, 3).map((notif, i) => (
             <motion.div key={notif.id} initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 + i * 0.05 }}
-              className={`flex items-start gap-3 p-3 rounded-2xl border transition-colors ${notif.read ? "bg-zinc-50 border-zinc-200" : "bg-amber-50/50 border-amber-100"}`}>
+              className={`relative flex items-start gap-3 p-3 rounded-2xl border transition-colors ${notif.read ? "bg-zinc-50 border-zinc-200" : "bg-amber-50/50 border-amber-100"}`}>
               <div className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
                 notif.type === "success" ? "bg-emerald-100" : notif.type === "warning" ? "bg-amber-100" : notif.type === "alert" ? "bg-rose-100" : "bg-blue-100"
               }`}>
@@ -40,10 +42,19 @@ export function ResidentHome() {
                 } />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-semibold text-zinc-900">{notif.title}</div>
+                <Link to={`/resident/notifications/${notif.id}`} className="text-xs font-semibold text-zinc-900 hover:text-amber-600 transition">
+                  {notif.title}
+                </Link>
                 <div className="text-[10px] text-zinc-400 mt-0.5 leading-relaxed line-clamp-2">{notif.message}</div>
                 <div className="text-[10px] text-zinc-300 mt-1">{notif.time}</div>
               </div>
+              <button
+                onClick={() => removeNotification(notif.id)}
+                className="absolute right-3 top-3 rounded-full p-1 text-zinc-400 hover:bg-zinc-200 hover:text-zinc-700 transition"
+                aria-label={`Hapus notifikasi ${notif.title}`}
+              >
+                <Trash2 size={14} />
+              </button>
               {!notif.read && <div className="w-2 h-2 rounded-full bg-amber-500 shrink-0 mt-1.5" />}
             </motion.div>
           ))}
@@ -134,33 +145,6 @@ export function ResidentHome() {
         </Link>
       </div>
 
-      {/* Notifications */}
-      <div className="px-4 mt-4">
-        <div className="flex items-center justify-between mb-2.5">
-          <h3 className="text-xs font-semibold text-zinc-700">Notifikasi Terbaru</h3>
-          <span className="text-xs text-amber-600 font-medium">Semua</span>
-        </div>
-        <div className="space-y-2">
-          {homeNotifications.slice(0, 3).map((notif, i) => (
-            <motion.div key={notif.id} initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 + i * 0.05 }}
-              className={`flex items-start gap-3 p-3 rounded-2xl border transition-colors ${notif.read ? "bg-zinc-50 border-zinc-200" : "bg-amber-50/50 border-amber-100"}`}>
-              <div className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
-                notif.type === "success" ? "bg-emerald-100" : notif.type === "warning" ? "bg-amber-100" : notif.type === "alert" ? "bg-rose-100" : "bg-blue-100"
-              }`}>
-                <Bell size={12} className={
-                  notif.type === "success" ? "text-emerald-600" : notif.type === "warning" ? "text-amber-600" : notif.type === "alert" ? "text-rose-600" : "text-blue-600"
-                } />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-xs font-semibold text-zinc-900">{notif.title}</div>
-                <div className="text-[10px] text-zinc-400 mt-0.5 leading-relaxed line-clamp-2">{notif.message}</div>
-                <div className="text-[10px] text-zinc-300 mt-1">{notif.time}</div>
-              </div>
-              {!notif.read && <div className="w-2 h-2 rounded-full bg-amber-500 shrink-0 mt-1.5" />}
-            </motion.div>
-          ))}
-        </div>
-      </div>
     </div>
   )
 }
