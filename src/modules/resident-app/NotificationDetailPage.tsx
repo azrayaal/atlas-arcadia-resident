@@ -1,5 +1,4 @@
 import { useMemo } from "react"
-import { motion } from "framer-motion"
 import { Bell, ChevronLeft, Trash2 } from "lucide-react"
 import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom"
 import type { Notification } from "../../types"
