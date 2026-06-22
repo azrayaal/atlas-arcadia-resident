@@ -132,7 +132,7 @@ export function ResidentLayout() {
       <div className="w-full max-w-[420px] rounded-3xl bg-white border border-zinc-200 p-4 shadow-lg">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Simulasi Notifikasi</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Notifikasi</p>
             <p className="text-[11px] text-zinc-400 mt-1">Klik tombol untuk menambahkan notifikasi ke daftar notifikasi.</p>
           </div>
         </div>
