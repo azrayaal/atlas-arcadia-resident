@@ -53,6 +53,11 @@ export interface FacilityBooking {
   date: string
   time: string
   status: "confirmed" | "pending" | "cancelled"
+  location?: string
+  attendees?: number
+  bookedAt?: string
+  reference?: string
+  notes?: string
 }
 
 export interface CCTVCamera {
@@ -94,6 +99,15 @@ export interface Bill {
 export interface BillItem {
   label: string
   amount: number
+}
+
+export interface Reward {
+  id: number
+  name: string
+  points: number
+  category: string
+  available: boolean
+  description?: string
 }
 
 export interface Notification {

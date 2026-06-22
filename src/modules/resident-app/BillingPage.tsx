@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import { CreditCard, CheckCircle2, Clock, ChevronRight, Zap, Droplets, Wifi, Home } from "lucide-react"
+import { Link } from "react-router-dom"
 import { residentBills } from "../../data/dummy"
 import { Badge } from "../../components/ui/badge"
 import { formatCurrency } from "../../lib/utils"
@@ -105,24 +106,26 @@ export function BillingPage() {
         <h3 className="text-xs font-semibold text-zinc-700 mb-2.5">Riwayat Pembayaran</h3>
         <div className="space-y-2">
           {residentBills.map((bill, i) => (
-            <motion.div key={bill.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.06 }}
-              className="flex items-center gap-3 p-3.5 bg-zinc-50 rounded-2xl border border-zinc-200">
-              <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${bill.status === "paid" ? "bg-emerald-50" : "bg-amber-50"}`}>
-                {bill.status === "paid"
-                  ? <CheckCircle2 size={16} className="text-emerald-500" />
-                  : <Clock size={16} className="text-amber-500" />}
-              </div>
-              <div className="flex-1">
-                <div className="text-xs font-semibold text-zinc-900">{bill.month}</div>
-                <div className="text-[10px] text-zinc-400">Jatuh tempo: {bill.dueDate}</div>
-              </div>
-              <div className="text-right">
-                <div className="text-xs font-bold text-zinc-900">{formatCurrency(bill.total)}</div>
-                <Badge variant={bill.status === "paid" ? "success" : "warning"} className="mt-0.5">
-                  {bill.status === "paid" ? "Lunas" : "Pending"}
-                </Badge>
-              </div>
-            </motion.div>
+            <Link to={`/resident/billing/${bill.id}`} key={bill.id} className="block">
+              <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.06 }}
+                className="flex items-center gap-3 p-3.5 bg-zinc-50 rounded-2xl border border-zinc-200">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${bill.status === "paid" ? "bg-emerald-50" : "bg-amber-50"}`}>
+                  {bill.status === "paid"
+                    ? <CheckCircle2 size={16} className="text-emerald-500" />
+                    : <Clock size={16} className="text-amber-500" />}
+                </div>
+                <div className="flex-1">
+                  <div className="text-xs font-semibold text-zinc-900">{bill.month}</div>
+                  <div className="text-[10px] text-zinc-400">Jatuh tempo: {bill.dueDate}</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs font-bold text-zinc-900">{formatCurrency(bill.total)}</div>
+                  <Badge variant={bill.status === "paid" ? "success" : "warning"} className="mt-0.5">
+                    {bill.status === "paid" ? "Lunas" : "Pending"}
+                  </Badge>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

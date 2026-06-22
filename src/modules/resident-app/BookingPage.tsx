@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { Dumbbell, Waves, Users2, CheckCircle2, Clock, Calendar } from "lucide-react"
 import { facilityBookings } from "../../data/dummy"
 import { Badge } from "../../components/ui/badge"
@@ -140,21 +141,24 @@ export function BookingPage() {
         <h3 className="text-xs font-semibold text-zinc-700 mb-2.5">Booking Saya</h3>
         <div className="space-y-2">
           {facilityBookings.slice(0, 3).map((bk, i) => (
-            <motion.div key={bk.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.06 }}
-              className="flex items-center gap-3 p-3 bg-zinc-50 rounded-xl border border-zinc-200">
-              <div className="w-9 h-9 rounded-xl bg-zinc-200 flex items-center justify-center shrink-0">
-                {bk.facility.includes("Gym") ? <Dumbbell size={16} className="text-zinc-600" />
-                  : bk.facility.includes("Pool") ? <Waves size={16} className="text-blue-500" />
-                  : <Users2 size={16} className="text-amber-500" />}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-xs font-semibold text-zinc-900 truncate">{bk.facility}</div>
-                <div className="text-[10px] text-zinc-400">{bk.date} · {bk.time}</div>
-              </div>
-              <Badge variant={bk.status === "confirmed" ? "success" : "warning"}>
-                {bk.status === "confirmed" ? "Konfirmasi" : "Pending"}
-              </Badge>
-            </motion.div>
+            <Link to={`/resident/booking/${bk.id}`} key={bk.id} className="block">
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.06 }}
+                className="flex items-center gap-3 p-3 bg-zinc-50 rounded-xl border border-zinc-200">
+                <div className="w-9 h-9 rounded-xl bg-zinc-200 flex items-center justify-center shrink-0">
+                  {bk.facility.includes("Gym") ? <Dumbbell size={16} className="text-zinc-600" />
+                    : bk.facility.includes("Pool") ? <Waves size={16} className="text-blue-500" />
+                    : <Users2 size={16} className="text-amber-500" />}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs font-semibold text-zinc-900 truncate">{bk.facility}</div>
+                  <div className="text-[10px] text-zinc-400">Bisa digunakan: {bk.date} · {bk.time}</div>
+                  {bk.bookedAt && <div className="text-[10px] text-zinc-400">Dipesan: {bk.bookedAt}</div>}
+                </div>
+                <Badge variant={bk.status === "confirmed" ? "success" : "warning"}>
+                  {bk.status === "confirmed" ? "Konfirmasi" : "Pending"}
+                </Badge>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

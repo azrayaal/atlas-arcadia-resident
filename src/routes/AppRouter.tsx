@@ -5,6 +5,9 @@ import { AccessPage } from "../modules/resident-app/AccessPage"
 import { BookingPage } from "../modules/resident-app/BookingPage"
 import { RewardsPage } from "../modules/resident-app/RewardsPage"
 import { BillingPage } from "../modules/resident-app/BillingPage"
+import { BookingDetailPage } from "../modules/resident-app/BookingDetailPage"
+import { RewardDetailPage } from "../modules/resident-app/RewardDetailPage"
+import { PaymentDetailPage } from "../modules/resident-app/PaymentDetailPage"
 import { AllNotificationsPage } from "../modules/resident-app/AllNotificationsPage"
 import { NotificationDetailPage } from "../modules/resident-app/NotificationDetailPage"
 
@@ -55,8 +58,11 @@ const router = createBrowserRouter([
       { index: true, element: <ResidentHome /> },
       { path: "access", element: <AccessPage /> },
       { path: "booking", element: <BookingPage /> },
+      { path: "booking/:id", element: <BookingDetailPage /> },
       { path: "rewards", element: <RewardsPage /> },
+      { path: "rewards/:id", element: <RewardDetailPage /> },
       { path: "billing", element: <BillingPage /> },
+      { path: "billing/:id", element: <PaymentDetailPage /> },
       { path: "notifications", element: <AllNotificationsPage /> },
       { path: "notifications/:id", element: <NotificationDetailPage /> },
     ],

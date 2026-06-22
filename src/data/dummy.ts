@@ -69,12 +69,20 @@ export const residents: Resident[] = [
 ]
 
 export const facilityBookings: FacilityBooking[] = [
-  { id: "fb1", facility: "Gym", resident: "Rizky Maulana", date: "2026-06-03", time: "07:00 - 08:00", status: "confirmed" },
-  { id: "fb2", facility: "Swimming Pool", resident: "Siti Aminah", date: "2026-06-03", time: "09:00 - 10:00", status: "confirmed" },
-  { id: "fb3", facility: "Social Hub - Meeting Room", resident: "Budi Santoso", date: "2026-06-04", time: "14:00 - 16:00", status: "pending" },
+  { id: "fb1", facility: "Gym", resident: "Rizky Maulana", date: "2026-06-03", time: "07:00 - 08:00", status: "confirmed", bookedAt: "2026-05-25" },
+  { id: "fb2", facility: "Swimming Pool", resident: "Siti Aminah", date: "2026-06-03", time: "09:00 - 10:00", status: "confirmed", bookedAt: "2026-05-26" },
+  { id: "fb3", facility: "Social Hub - Meeting Room", resident: "Budi Santoso", date: "2026-06-04", time: "14:00 - 16:00", status: "pending", bookedAt: "2026-05-27" },
   { id: "fb4", facility: "Gym", resident: "Dewi Rahayu", date: "2026-06-04", time: "18:00 - 19:00", status: "confirmed" },
   { id: "fb5", facility: "Swimming Pool", resident: "Ahmad Fauzi", date: "2026-06-05", time: "07:00 - 08:30", status: "confirmed" },
   { id: "fb6", facility: "Social Hub - Cinema", resident: "Kartika Sari", date: "2026-06-05", time: "20:00 - 22:00", status: "pending" },
+]
+
+export const rewards = [
+  { id: 1, name: "Kopi Gratis di Cafe", points: 200, category: "F&B", available: true, description: "Dapatkan 1 kopi filter di cafe properti" },
+  { id: 2, name: "1x Free Laundry (5kg)", points: 350, category: "Laundry", available: true, description: "Satu kali layanan laundry 5kg" },
+  { id: 3, name: "Tiket Bioskop", points: 750, category: "Entertainment", available: true, description: "Tiket bioskop untuk satu orang" },
+  { id: 4, name: "Diskon Sewa 10%", points: 2000, category: "Rental", available: false, description: "Diskon 10% untuk tagihan sewa bulan berikutnya" },
+  { id: 5, name: "Voucher Belanja Rp100K", points: 500, category: "Minimarket", available: true, description: "Voucher belanja di minimarket properti" },
 ]
 
 export const cctvCameras: CCTVCamera[] = [

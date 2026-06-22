@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
-import { Star, Trophy, Gift, Coffee, ShoppingBag, Ticket, ChevronRight } from "lucide-react"
+import { Star, Trophy, Gift, ChevronRight } from "lucide-react"
+import { Link } from "react-router-dom"
+import { rewards } from "../../data/dummy"
 
 const tiers = [
   { name: "Bronze", min: 0, max: 2000, color: "from-amber-700 to-amber-500" },
@@ -8,13 +10,7 @@ const tiers = [
   { name: "Platinum", min: 10000, max: 999999, color: "from-slate-600 to-slate-400" },
 ]
 
-const rewards = [
-  { id: 1, name: "Kopi Gratis di Cafe", points: 200, icon: Coffee, category: "F&B", available: true },
-  { id: 2, name: "1x Free Laundry (5kg)", points: 350, icon: ShoppingBag, category: "Laundry", available: true },
-  { id: 3, name: "Tiket Bioskop", points: 750, icon: Ticket, category: "Entertainment", available: true },
-  { id: 4, name: "Diskon Sewa 10%", points: 2000, icon: Gift, category: "Rental", available: false },
-  { id: 5, name: "Voucher Belanja Rp100K", points: 500, icon: ShoppingBag, category: "Minimarket", available: true },
-]
+// rewards data imported from data/dummy
 
 const pointHistory = [
   { desc: "Pembayaran Sewa Mei", points: +350, date: "01 Mei 2026", type: "earn" },
@@ -86,29 +82,32 @@ export function RewardsPage() {
         <h3 className="text-xs font-semibold text-zinc-700 mb-2.5">Tukar Reward</h3>
         <div className="space-y-2">
           {rewards.map((reward, i) => (
-            <motion.div key={reward.id} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
-              className={`flex items-center gap-3 p-3.5 rounded-2xl border ${reward.available ? "bg-white border-zinc-100" : "bg-zinc-50 border-zinc-100 opacity-60"}`}>
-              <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
-                <reward.icon size={18} className="text-amber-600" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-xs font-semibold text-zinc-900">{reward.name}</div>
-                <div className="text-[10px] text-zinc-400 mt-0.5">{reward.category}</div>
-              </div>
-              <div className="text-right shrink-0">
-                <div className="flex items-center gap-1 justify-end">
-                  <Star size={11} className="text-amber-500" fill="#f59e0b" />
-                  <span className="text-xs font-bold text-zinc-900">{reward.points}</span>
+            <Link to={`/resident/rewards/${reward.id}`} key={reward.id} className="block">
+              <motion.div initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
+                className={`flex items-center gap-3 p-3.5 rounded-2xl border ${reward.available ? "bg-white border-zinc-100" : "bg-zinc-50 border-zinc-100 opacity-60"}`}>
+                <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
+                  {/* icon not available in dummy, show generic */}
+                  <div className="text-amber-600 text-sm">★</div>
                 </div>
-                {reward.available && currentPoints >= reward.points ? (
-                  <button className="mt-1 text-[10px] font-bold text-amber-600 flex items-center gap-0.5">
-                    Tukar <ChevronRight size={10} />
-                  </button>
-                ) : (
-                  <span className="text-[10px] text-zinc-300">Kurang poin</span>
-                )}
-              </div>
-            </motion.div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs font-semibold text-zinc-900">{reward.name}</div>
+                  <div className="text-[10px] text-zinc-400 mt-0.5">{reward.category}</div>
+                </div>
+                <div className="text-right shrink-0">
+                  <div className="flex items-center gap-1 justify-end">
+                    <Star size={11} className="text-amber-500" fill="#f59e0b" />
+                    <span className="text-xs font-bold text-zinc-900">{reward.points}</span>
+                  </div>
+                  {reward.available && currentPoints >= reward.points ? (
+                    <button className="mt-1 text-[10px] font-bold text-amber-600 flex items-center gap-0.5">
+                      Tukar <ChevronRight size={10} />
+                    </button>
+                  ) : (
+                    <span className="text-[10px] text-zinc-300">Kurang poin</span>
+                  )}
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>
